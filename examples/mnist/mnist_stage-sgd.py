@@ -38,7 +38,7 @@ def train_model(args, model, device, train_loader, optimizer, epoch):
         loss = torch.nn.functional.nll_loss(output, target)
         loss.backward()
         optimizer.step()
-        if batch_idx % args.log_interval == 0:
+        if args.verbose and batch_idx % args.log_interval == 0:
             print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader.dataset),
                 100. * batch_idx / len(train_loader), loss.item()))
@@ -104,6 +104,11 @@ def main():
         default=300,
         help='number of wait logging'
     )
+    parser.add_argument(
+        '--verbose',
+        action='store_true',
+        help='show training logs'
+    )
 
     args = parser.parse_args()
     
@@ -122,7 +127,6 @@ def main():
         cuda_kwargs = {
             'num_workers': 1,
             'pin_memory': True,
-            'shuffle': True,
         }
         train_kwargs.update(cuda_kwargs)
         test_kwargs.update(cuda_kwargs)
