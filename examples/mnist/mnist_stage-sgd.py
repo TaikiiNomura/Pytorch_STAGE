@@ -51,8 +51,8 @@ def test_model(model, device, test_loader):
         for data, target in test_loader:
             data, target = data.to(device), target.to(device)
             output = model(data)
-            test_loss += torch.nn.functional.nll_loss(output, target, reduction='sum').item()  # sum up batch loss
-            pred = output.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
+            test_loss += torch.nn.functional.nll_loss(output, target, reduction='sum').item()
+            pred = output.argmax(dim=1, keepdim=True)
             correct += pred.eq(target.view_as(pred)).sum().item()
 
     test_loss /= len(test_loader.dataset)
@@ -101,7 +101,7 @@ def main():
     parser.add_argument(
         '--log-interval',
         type=int,
-        default=3,
+        default=300,
         help='number of wait logging'
     )
 
