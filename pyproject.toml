@@ -1,0 +1,16 @@
+[project]
+name = "stage"
+version = "0.1.0"
+description = "stage optimizer for pytorch"
+requires-python = ">=3.10"
+
+dependencies = [
+    "torch>=2.0"
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
