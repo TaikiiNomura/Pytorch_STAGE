@@ -115,13 +115,6 @@ def main():
         metavar='S',
         help='random seed (def=1)'
     )
-    parser.add_argument(
-        '--threshold',
-        type=int,
-        default=1000,
-        metavar='N',
-        help='',
-    )
 
     args = parser.parse_args()
 
@@ -182,7 +175,7 @@ def main():
         model = Net().to(device)
         
         optm_kwargs = {'lr': args.lr}
-        if name == "stage-sgd":
+        if name == "stage-SGD":
             stage_kwargs = {'tau': args.tau}
             optm_kwargs.update(stage_kwargs)
         
@@ -194,7 +187,6 @@ def main():
                 train_loader,
                 optimizer,
                 device,
-                args.threshold,
             )
 
             acc = test_model(
