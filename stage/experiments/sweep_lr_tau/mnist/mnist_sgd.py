@@ -173,7 +173,7 @@ def main():
 
     optimizers = {
         "torch-SGD": torch.optim.SGD,
-        "stage-sgd": stage.STAGE_SGD,
+        "stage-SGD": stage.STAGE_SGD,
     }
 
     for name, func_class in optimizers.items():
